@@ -12,11 +12,11 @@
 
 ### City
 
-**Create**
+**CREATE**
 
 POST _/cities/_ 
 
-**BODY**
+**body**
 ```json
 {
 	"name": "City Name",
@@ -29,7 +29,7 @@ POST _/cities/_
 
 ---
 
-**Find**
+**FIND**
 
 GET _/cities/_ 
 
@@ -41,11 +41,11 @@ GET _/cities/_
 
 ### Customer
 
-**Create**
+**CREATE**
 
 POST _/customers/_ 
 
-**BODY**
+**body**
 ```json
 {
 	"name": "John Doe",
@@ -61,7 +61,7 @@ POST _/customers/_
 
 ---
 
-**Find**
+**FIND**
 
 GET _/customers/_ 
 
@@ -71,7 +71,7 @@ GET _/customers/_
 
 ---
 
-**Remove**
+**REMOVE**
 
 DELETE _/customers/{id}_ 
 
@@ -79,11 +79,11 @@ DELETE _/customers/{id}_
 
 ---
 
-**Update**
+**UPDATE**
 
 PUT _/customers/{id}_ 
 
-**BODY**
+**body**
 ```json
 {
 	"name": "John Doe"
