@@ -7,7 +7,7 @@
     "dev:serve": "tsnd -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules --respawn src/shared/infra/http/server.ts",
     "build": "tsc",
     "start": "ts-node src/shared/infra/http/server.ts",
-    "test": "jest"
+    "test": "jest -i"
   },
   "devDependencies": {
     "@types/cors": "^2.8.10",
