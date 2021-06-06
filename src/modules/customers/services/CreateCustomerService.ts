@@ -34,6 +34,7 @@ export default class CreateCustomerService {
       city = cities[0];
     }
 
+    if (!name) throw new AppError('Customer name is required', 400);
     if (gender !== 'M' && gender !== 'F' && !!gender)
       throw new AppError('Invalid gender format. Expected M or F.', 400);
 

@@ -15,6 +15,7 @@ export default class CreateCityService {
   public async execute({ name, state }: City): Promise<City> {
     const cities = await this.citiesRepository.find({ name, state });
 
+    if (!name || !state) throw new AppError('City name and state are required', 400);
     if (cities.length > 0) throw new AppError('City already exists', 409);
 
     let city: City = await this.citiesRepository.create({ name, state });

@@ -10,8 +10,6 @@ export default class CitiesController {
     try {
       let { name, state } = req.body;
 
-      if (!name || !state) throw new AppError('City name and state are required', 400);
-
       const createCityService = container.resolve(CreateCityService);
       const city = await createCityService.execute({ name, state });
 

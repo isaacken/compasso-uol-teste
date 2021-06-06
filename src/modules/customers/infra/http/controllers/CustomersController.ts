@@ -12,8 +12,6 @@ export default class CustomersController {
     try {
       let { name, gender, birthDate, cityId } = req.body;
 
-      if (!name) throw new AppError('Customer name is required', 400);
-
       const createCustomerService = container.resolve(CreateCustomerService);
       const customer = await createCustomerService.execute({ name, gender, birthDate, cityId });
 
@@ -41,8 +39,6 @@ export default class CustomersController {
     try {
       const { _id } = req.params;
 
-      if (!_id) throw new AppError('Customer id is required', 400);
-
       const removeCustomerService = container.resolve(RemoveCustomerService);
 
       await removeCustomerService.execute({ _id });
@@ -57,9 +53,6 @@ export default class CustomersController {
     try {
       const { _id } = req.params;
       const { name } = req.body;
-
-      if (!_id) throw new AppError('Customer id is required', 400);
-      if (!name) throw new AppError('Customer name is required', 400);
 
       const updateCustomerService = container.resolve(UpdateCustomerService);
 
