@@ -42,7 +42,7 @@ describe('Find city', () => {
     await citiesController.find(req, res);
     const result = JSON.parse(res._getData());
 
-    expect(result).toHaveLength(1);
+    expect(result.length).toBeGreaterThan(0);
   });
 
   it('should be able to find a city by state', async () => {
@@ -59,7 +59,7 @@ describe('Find city', () => {
     await citiesController.find(req, res);
     const result = JSON.parse(res._getData());
 
-    expect(result).toHaveLength(1);
+    expect(result.length).toBeGreaterThan(0);
   });
 
   it('should be able to find a city by name and state', async () => {
@@ -77,6 +77,6 @@ describe('Find city', () => {
     await citiesController.find(req, res);
     const result = JSON.parse(res._getData());
 
-    expect(result).toHaveLength(1);
+    expect(result.length).toBeGreaterThan(0);
   });
 });
