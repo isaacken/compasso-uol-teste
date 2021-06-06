@@ -12,8 +12,6 @@
 
 ### City
 
----
-
 **Create**
 
 POST _/cities/_ 
@@ -42,8 +40,6 @@ GET _/cities/_
 --- 
 
 ### Customer
-
----
 
 **Create**
 
