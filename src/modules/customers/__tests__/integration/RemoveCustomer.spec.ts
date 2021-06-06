@@ -27,10 +27,10 @@ describe('Remove customer', () => {
       name: 'Cliente Teste',
       birthDate: new Date('1998-10-01'),
       gender: 'M',
-      city: (await CityModel.find({
+      city: await CityModel.findOne({
         name: 'Cidade Teste',
         state: 'NA'
-      }))[0]
+      })
     });
   });
 
@@ -50,9 +50,9 @@ describe('Remove customer', () => {
   it('should be able to remove a customer', async () => {
     const customerController = new CustomersController;
 
-    const customerToRemove = (await CustomerModel.find({
+    const customerToRemove = await CustomerModel.findOne({
       name: 'Cliente Teste'
-    }))[0];
+    });
 
     const req = mockRequest({
       params: {
@@ -64,6 +64,9 @@ describe('Remove customer', () => {
 
     await customerController.remove(req, res);
 
+    const checkCustomer = await CustomerModel.find({ name: 'Cliente Teste' });
+
     expect(res._getStatusCode()).toBe(204);
+    expect(checkCustomer).toHaveLength(0);
   });
 });
