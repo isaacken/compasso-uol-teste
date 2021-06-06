@@ -15,10 +15,10 @@ export default class FakeCitiesRepository implements ICitiesRepository {
     return city;
   }
 
-  public async find({ name, state }: City): Promise<City[]> {
+  public async find({ _id, name, state }: City): Promise<City[]> {
     const foundCities = this.cities.filter((c) => {
-      return (c.name === name || !name) && (c.state === state || !state);
-    })
+      return (c.name === name || !name) && (c.state === state || !state) && (c._id === _id || !_id);
+    });
 
     return foundCities;
   }
