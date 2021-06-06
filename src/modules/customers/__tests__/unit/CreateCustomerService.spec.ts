@@ -55,13 +55,31 @@ describe('Create customer', () => {
 
     let exception;
     try {
-      let a = await createCustomerService.execute({ name: 'Isaac Kennedy', gender: 'M', birthDate: '1998-10-01', cityId: 'teste123' });
-      console.log(a);
+      await createCustomerService.execute({ name: 'Isaac Kennedy', gender: 'M', birthDate: '1998-10-01', cityId: 'teste123' });
     } catch (error) {
       exception = error;
     }
 
     expect(exception).toBeInstanceOf(AppError);
     expect(exception.statusCode).toBe(404);
+  });
+
+  it('should not allow to create a new customer if the birth date is not valid', async () => {
+    const fakeCustomersRepository = new FakeCustomersRepository;
+    const fakeCitiesRepository = new FakeCitiesRepository;
+    const createCustomerService = new CreateCustomerService(fakeCustomersRepository, fakeCitiesRepository);
+
+    const cityId = uuid();
+    fakeCitiesRepository.cities.push({ _id: cityId, name: 'Ouro Fino', state: 'MG' });
+
+    let exception;
+    try {
+      await createCustomerService.execute({ name: 'Isaac Kennedy', gender: 'M', birthDate: '01/10/1998', cityId });
+    } catch (error) {
+      exception = error;
+    }
+
+    expect(exception).toBeInstanceOf(AppError);
+    expect(exception.statusCode).toBe(400);
   });
 });
