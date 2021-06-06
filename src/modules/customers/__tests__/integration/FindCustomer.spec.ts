@@ -1,14 +1,13 @@
 import 'reflect-metadata';
 import '@shared/container';
 import mongoose from 'mongoose';
-import CitiesController from '@modules/cities/infra/http/controllers/CitiesController';
 import { mockRequest } from 'jest-mock-req-res';
 import httpMocks from 'node-mocks-http';
 import CityModel from '@modules/cities/infra/mongodb/models/CityModel';
 import CustomersController from '@modules/customers/infra/http/controllers/CustomersController';
 import CustomerModel from '@modules/customers/infra/mongodb/models/CustomerModel';
 
-describe('Create customer', () => {
+describe('Find customer', () => {
   beforeEach(async () => {
     await CityModel.deleteMany({
       name: 'Cidade Teste',
@@ -67,6 +66,7 @@ describe('Create customer', () => {
 
     const result = JSON.parse(res._getData());
 
+    expect(res._getStatusCode()).toBe(200);
     expect(result.length).toBeGreaterThan(0);
     expect(result[0].name).toBe('Cliente Teste');
     expect(result[0].birthDate).toContain('1998-10-01');
@@ -88,6 +88,7 @@ describe('Create customer', () => {
 
     const result = JSON.parse(res._getData());
 
+    expect(res._getStatusCode()).toBe(200);
     expect(result.length).toBeGreaterThan(0);
     expect(result[0].name).toBe('Cliente Teste');
     expect(result[0].birthDate).toContain('1998-10-01');
