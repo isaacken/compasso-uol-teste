@@ -1,4 +1,4 @@
-# UOL Compasso / Node.js Back-end developer test
+# Compasso UOL / Node.js Back-end developer test
 
 ## Configuration
 
